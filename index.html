@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZZ</title>
+</head>
+<body>
+      <section class="splash-screen" id="splash-screen" aria-label="Loading Numeris">
+        <div class="splash-mark">N</div>
+        <p class="eyebrow">Numeris / Practice lab</p>
+        <h1>Think<br><em>brighter.</em></h1>
+        <div class="splash-loader"><span></span></div>
+    </section>
+
+    <section class="auth-shell" id="auth-shell" hidden aria-labelledby="auth-title">
+        <div class="auth-brand"><div class="brand-mark" aria-hidden="true">N</div><span>Numeris</span></div>
+        <div class="auth-layout">
+            <div class="auth-pitch">
+                <p class="eyebrow">A sharper way to practise</p>
+                <h1>Build knowledge<br><em>that sticks.</em></h1>
+                <p>Choose your subjects, set your level, and turn every attempt into progress.</p>
+                <div class="auth-stamp">94+<small>questions<br>across subjects</small></div>
+            </div>
+            <div class="auth-card">
+                <div class="auth-tabs" role="tablist" aria-label="Account access">
+                    <button class="auth-tab active" id="login-tab" type="button" role="tab" aria-selected="true">Log in</button>
+                    <button class="auth-tab" id="signup-tab" type="button" role="tab" aria-selected="false">Sign up</button>
+                </div>
+                <p class="eyebrow" id="auth-kicker">Welcome back</p>
+                <h2 id="auth-title">Return to your practice.</h2>
+                <p class="auth-helper" id="auth-helper">Your progress is saved locally on this device.</p>
+                <form id="auth-form">
+                    <label for="auth-name">Your name</label>
+                    <input id="auth-name" type="text" maxlength="24" autocomplete="name" placeholder="e.g. Alex Morgan" required>
+                    <label for="auth-email">Email address</label>
+                    <input id="auth-email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                    <label for="auth-password">Password</label>
+                    <input id="auth-password" type="password" minlength="4" autocomplete="current-password" placeholder="At least 4 characters" required>
+                    <button class="button button-primary auth-submit" id="auth-submit" type="submit">Log in <span aria-hidden="true">&rarr;</span></button>
+                </form>
+                <div class="auth-divider"><span>or continue with</span></div>
+                <div class="provider-buttons">
+                    <button class="provider-button google-button" id="google-auth" type="button"><span class="provider-icon">G</span>Google</button>
+                    <button class="provider-button facebook-button" id="facebook-auth" type="button"><span class="provider-icon">f</span>Facebook</button>
+                </div>
+                <p class="auth-note"><strong>Login required.</strong> Local demo mode. Real provider authentication needs OAuth credentials and a backend.</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="app-shell" id="app-shell" hidden>
+        <section class="quiz-card" aria-labelledby="quiz-title">
+            <header class="quiz-header">
+                <div class="brand-mark" aria-hidden="true">N</div>
+                <div>
+                    <p class="eyebrow">Numeris / Practice lab</p>
+                    <h1 id="quiz-title">Build your quiz</h1>
+                </div>
+                <div class="question-count" aria-live="polite">
+                    <span id="question-number">Setup</span>
+                </div>
+                <button class="profile-chip" id="profile-chip" type="button" aria-label="Current profile">Guest</button>
+                <button class="settings-button" id="settings-button" type="button" aria-label="Open settings">Settings</button>
+            </header>
+
+            <div class="progress-track" id="progress-track" aria-label="Quiz progress" hidden>
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <section class="setup-view" id="setup-view" aria-labelledby="setup-title">
+                <div class="profile-panel">
+                    <div class="profile-avatar" aria-hidden="true" id="profile-avatar">G</div>
+                    <div class="profile-copy">
+                        <label for="profile-name">Your profile</label>
+                        <input id="profile-name" type="text" maxlength="24" placeholder="Enter your name">
+                        <small>Your progress is saved on this device.</small>
+                    </div>
+                    <div class="profile-rank"><strong id="profile-level">New learner</strong><small id="profile-rank">Profile level</small></div>
+                    <div class="profile-stats"><strong id="setup-best-score">0%</strong><small>best score</small></div>
+                </div>
+                <div class="profile-dashboard" aria-label="Learner profile statistics">
+                    <div class="dashboard-heading"><div><p class="eyebrow">Learner profile</p><h3 id="profile-display-name">Guest</h3></div><span id="profile-class-badge">Foundation track</span></div>
+                    <div class="dashboard-stats">
+                        <div><strong id="profile-sessions">0</strong><small>sessions</small></div>
+                        <div><strong id="profile-average">0%</strong><small>average accuracy</small></div>
+                        <div><strong id="profile-best">0%</strong><small>personal best</small></div>
+                    </div>
+                    <div class="profile-progress"><div class="profile-progress-label"><span>Progress to Scholar</span><strong id="profile-progress-value">0%</strong></div><div class="profile-progress-track"><span id="profile-progress-bar"></span></div></div>
+                </div>
+                <div class="setup-intro">
+                    <p class="eyebrow">Personalise your session</p>
+                    <h2 id="setup-title">Practice with purpose.</h2>
+                    <p>Choose your class, focus areas, and pace. Your quiz will be built from the question bank instantly.</p>
+                </div>
+
+                <div class="setup-section">
+                    <div class="section-heading">
+                        <span class="step-number">01</span>
+                        <div><h3>Choose your class</h3><p>This sets the technical difficulty of your session.</p></div>
+                    </div>
+                    <div class="class-options" role="radiogroup" aria-label="Choose your class">
+                        <label class="class-option selected"><input type="radio" name="class" value="Foundation" checked><span class="class-check">1</span><span><strong>Foundation</strong><small>Classes 5 - 6</small></span></label>
+                        <label class="class-option"><input type="radio" name="class" value="Core"><span class="class-check">2</span><span><strong>Core</strong><small>Classes 7 - 8</small></span></label>
+                        <label class="class-option"><input type="radio" name="class" value="Advanced"><span class="class-check">3</span><span><strong>Advanced</strong><small>Classes 9 - 10</small></span></label>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <div class="section-heading">
+                        <span class="step-number">02</span>
+                        <div><h3>Choose your mode</h3><p>Practice at your pace or compete against the clock.</p></div>
+                    </div>
+                    <div class="mode-options" role="radiogroup" aria-label="Choose quiz mode">
+                        <label class="mode-option selected"><input type="radio" name="quiz-mode" value="practice" checked><span class="mode-icon">P</span><span><strong>Practice</strong><small>No time pressure</small></span></label>
+                        <label class="mode-option"><input type="radio" name="quiz-mode" value="competition"><span class="mode-icon">&#9201;</span><span><strong>Competition</strong><small>Beat the clock</small></span></label>
+                    </div>
+                    <div class="competition-settings" id="competition-settings" hidden>
+                        <label for="competition-minutes">Time limit</label>
+                        <div><input id="competition-minutes" type="number" min="1" max="60" value="5"><span>minutes</span></div>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <div class="section-heading">
+                        <span class="step-number">03</span>
+                        <div><h3>Choose your subjects</h3><p>Mix subjects for a broader challenge.</p></div>
+                    </div>
+                    <div class="subject-options" id="subject-options" role="group" aria-label="Choose quiz subjects"></div>
+                </div>
+
+                <div class="setup-section">
+                    <div class="section-heading">
+                        <span class="step-number">04</span>
+                        <div><h3>Choose your topics</h3><p>Focus the session on specific areas.</p></div>
+                    </div>
+                    <div class="topic-options" id="topic-options" role="group" aria-label="Choose quiz topics"></div>
+                </div>
+
+                <div class="setup-section setup-last">
+                    <div class="section-heading">
+                        <span class="step-number">05</span>
+                        <div><h3>Review your session</h3><p>Your total updates as you choose questions by topic.</p></div>
+                    </div>
+                    <div class="session-summary">
+                        <label for="total-question-count">Total questions</label>
+                        <input id="total-question-count" type="number" min="1" placeholder="0" inputmode="numeric" aria-describedby="count-hint">
+                        <span>questions</span>
+                        <small id="count-hint">Choose topics, then enter the total you want.</small>
+                    </div>
+                </div>
+
+                <div class="setup-footer">
+                    <span id="question-availability">0 questions available</span>
+                    <button class="button button-primary" id="start-button" type="button">Start quiz <span aria-hidden="true">&rarr;</span></button>
+                </div>
+            </section>
+
+            <div class="quiz-body" id="quiz-view" hidden>
+                <div class="question-meta">
+                    <span class="topic-tag" id="topic-tag">Arithmetic</span>
+                    <span class="status-text" id="status-text">Choose one answer</span>
+                    <span class="timer-badge" id="timer-badge" hidden aria-live="polite">05:00</span>
+                </div>
+                <div class="live-scoreboard" id="live-scoreboard" aria-live="polite">
+                    <div>
+                        <span class="score-label">Score</span>
+                        <strong id="live-score">0</strong>
+                    </div>
+                    <div>
+                        <span class="score-label">Correct</span>
+                        <strong id="live-correct">0</strong>
+                    </div>
+                    <div>
+                        <span class="score-label">Answered</span>
+                        <strong id="live-answered">0 / 0</strong>
+                    </div>
+                </div>
+                <p class="question-index" id="question-index">Question 1 of 50</p>
+                <h2 id="question-text">Loading question...</h2>
+                <div class="answers" id="answers" role="radiogroup" aria-labelledby="question-text"></div>
+
+                <div class="quiz-actions">
+                    <button class="button button-quiet" id="home-button" type="button">Home</button>
+                    <button class="button button-quiet" id="previous-button" type="button">&larr; Previous</button>
+                    <button class="button button-primary" id="next-button" type="button">Next question <span aria-hidden="true">&rarr;</span></button>
+                </div>
+            </div>
+
+            <section class="result-view" id="result-view" aria-labelledby="result-title" hidden>
+                <div class="result-icon" aria-hidden="true">&#10003;</div>
+                <p class="eyebrow">Session complete</p>
+                <h2 id="result-title">Your result is in.</h2>
+                <p class="result-score"><strong id="score-value">0</strong><span> / <span id="result-total">0</span> correct</span></p>
+                <p class="result-message" id="result-message"></p>
+                <div class="scoreboard" aria-labelledby="scoreboard-title">
+                    <div class="scoreboard-heading"><h3 id="scoreboard-title">Your scoreboard</h3><span id="scoreboard-player">Guest</span></div>
+                    <div class="scoreboard-stats">
+                        <div><strong id="completed-sessions">0</strong><small>sessions</small></div>
+                        <div><strong id="best-score">0%</strong><small>best score</small></div>
+                        <div><strong id="average-score">0%</strong><small>average</small></div>
+                    </div>
+                </div>
+                <div class="correction-panel">
+                    <div class="correction-heading">
+                        <h3>Review your answers</h3>
+                        <span id="correction-summary">Corrections</span>
+                    </div>
+                    <div class="correction-list" id="correction-list"></div>
+                </div>
+                <div class="result-actions">
+                    <button class="button button-quiet" id="change-settings-button" type="button">Home</button>
+                    <button class="button button-primary" id="restart-button" type="button">Try again <span aria-hidden="true">&rarr;</span></button>
+                </div>
+            </section>
+
+            <footer class="quiz-footer">
+                <span>Questions by topic</span>
+                <span class="footer-dot" aria-hidden="true"></span>
+                <span>Multiple choice</span>
+                <span class="footer-spacer"></span>
+                <span>Take your time</span>
+            </footer>
+        </section>
+    </main>
+
+    <aside class="settings-panel" id="settings-panel" hidden aria-labelledby="settings-title">
+        <div class="settings-backdrop" data-close-settings="true"></div>
+        <div class="settings-content" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+            <div class="settings-header">
+                <div>
+                    <p class="eyebrow">Account</p>
+                    <h2 id="settings-title">Settings</h2>
+                </div>
+                <button class="button button-quiet settings-close" id="settings-close" type="button" aria-label="Close settings">Close</button>
+            </div>
+
+            <div class="settings-body">
+                <section class="settings-section">
+                    <h3>Profile</h3>
+                    <div class="settings-profile-card">
+                        <div class="profile-avatar settings-avatar" id="settings-avatar">G</div>
+                        <div class="settings-profile-copy">
+                            <strong id="settings-name">Guest</strong>
+                            <span id="settings-email">No email added</span>
+                        </div>
+                    </div>
+                    <form id="settings-form" class="settings-form">
+                        <label for="settings-name-input">Name</label>
+                        <input id="settings-name-input" type="text" maxlength="24" placeholder="Enter your name">
+                        <label for="settings-email-input">Email</label>
+                        <input id="settings-email-input" type="email" placeholder="you@example.com">
+                        <div class="settings-actions">
+                            <button class="button button-primary" id="save-profile-button" type="submit">Save profile</button>
+                            <button class="button button-quiet" id="cancel-settings-button" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Scoreboard</h3>
+                    <div class="settings-stats-grid">
+                        <div><strong id="settings-sessions">0</strong><small>sessions</small></div>
+                        <div><strong id="settings-best">0%</strong><small>best</small></div>
+                        <div><strong id="settings-average">0%</strong><small>average</small></div>
+                    </div>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Recent results</h3>
+                    <ul class="settings-results" id="settings-results"></ul>
+                </section>
+
+                <section class="settings-section settings-footer-actions">
+                    <button class="button button-quiet" id="edit-profile-button" type="button">Edit profile</button>
+                    <button class="button button-primary danger-button" id="logout-button" type="button">Log out</button>
+                </section>
+            </div>
+        </div>
+    </aside>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
